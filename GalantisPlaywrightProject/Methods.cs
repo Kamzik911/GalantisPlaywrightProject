@@ -2,7 +2,7 @@
 
 namespace GalantisPlaywrightProject
 {    
-    public class Methods : PageTest
+    public class Methods
     {
         private readonly IPage page;
         private readonly Pages pages;             
@@ -11,15 +11,6 @@ namespace GalantisPlaywrightProject
         {
             this.page = page;
             this.pages = pages;
-        }
-
-        //Browser
-        public async Task SelectedChromeBrowser()
-        {            
-            await using var browser = await Playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
-            {
-                Headless = false
-            });
         }
 
         public async Task GoToMainPage()

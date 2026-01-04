@@ -5,23 +5,31 @@ namespace GalantisPlaywrightProject
     [TestFixture]
     public class Tests : PageTest
     {
-        private Methods methods;
-        private Locators locators;
         private Pages pages;
+        private Methods methods;        
+        private Buttons buttons;                
+        private Locators locators;
 
         [SetUp]
         public void Setup()
         {
-            pages = new Pages();
+            pages = new Pages();  
             locators = new Locators();
             methods = new Methods(Page, pages);
+            buttons = new Buttons(methods, locators);
         }
 
         [Test]
         public async Task GoToMainPage_ShouldPass()
         {
+            await methods.GoToMainPage();            
+        }
+
+        [Test]
+        public async Task CloseMainPageModalWindow_ShouldPass()
+        {
             await methods.GoToMainPage();
-            await methods.ClickOnElementIfAvailable(locators.CloseButtonMainPageModal);
+            await buttons.CloseMainPageModal();
         }
     }
 }
