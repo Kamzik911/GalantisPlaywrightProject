@@ -18,14 +18,18 @@ namespace GalantisPlaywrightProject
             await page.GotoAsync(pages.InitialPage);            
         }
 
-        public async Task<bool> ClickOnElementIfAvailable(string selector)
+        public async Task ClickOnElementIfAvailable(string selector)
         {
-            if (await page.IsVisibleAsync(selector))
-            {
-                await page.ClickAsync(selector);
-                return true;
-            }
-            return false;
+            var field = page.Locator(selector);
+            await field.WaitForAsync(new() { State = WaitForSelectorState.Visible });
+            await field.ClickAsync();
+        }
+
+        public async Task InputTextToField(string selector, string text)
+        {            
+            var field = page.Locator(selector);
+            await field.WaitForAsync(new() { State = WaitForSelectorState.Visible });
+            await field.FillAsync(text);            
         }
     }
 }
