@@ -1,6 +1,6 @@
 ﻿using Microsoft.Playwright;
 
-namespace GalantisPlaywrightProject
+namespace GalantisPlaywrightProject.Setup
 {    
     public class Methods
     {
@@ -18,7 +18,7 @@ namespace GalantisPlaywrightProject
             await page.GotoAsync(pages.InitialPage);            
         }
 
-        public async Task ClickOnElementIfAvailable(string selector)
+        public async Task ClickOnElementIfVisible(string selector)
         {
             var field = page.Locator(selector);
             await field.WaitForAsync(new() { State = WaitForSelectorState.Visible });
@@ -30,6 +30,12 @@ namespace GalantisPlaywrightProject
             var field = page.Locator(selector);
             await field.WaitForAsync(new() { State = WaitForSelectorState.Visible });
             await field.FillAsync(text);            
+        }
+
+        public async Task CheckVisibleTextElement(string selector)
+        {
+            var field = page.GetByText(selector);
+            await field.WaitForAsync(new() { State = WaitForSelectorState.Visible });            
         }
     }
 }
