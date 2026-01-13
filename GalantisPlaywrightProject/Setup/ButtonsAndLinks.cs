@@ -5,30 +5,30 @@ namespace GalantisPlaywrightProject.Setup
 {
     public class DirectPageLinks
     {
-        private Methods methods;
+        private PagesNavigation pageNavi;
         private MainPageButtons mpButtons;        
 
-        public DirectPageLinks(Methods methods, MainPageButtons mpButtons)
+        public DirectPageLinks(PagesNavigation pageNavi, MainPageButtons mpButtons)
         {
-            this.methods = methods ?? throw new ArgumentNullException(nameof(methods));            
+            this.pageNavi = pageNavi ?? throw new ArgumentNullException(nameof(pageNavi));            
             this.mpButtons = mpButtons ?? throw new ArgumentNullException(nameof(mpButtons));            
         }            
 
         public async Task VisitMainPage()
         {
-            await methods.GoToMainPage();
+            await pageNavi.GoToMainPage();
             await mpButtons.CloseMainPageModal();
         }
     }
 
     public class ButtonsAndLinks
     {
-        private Methods methods;
+        private ElementActions elementAct;
         private MainPageLocators locators;        
 
-        public ButtonsAndLinks(Methods methods, MainPageLocators locators)
+        public ButtonsAndLinks(ElementActions elementAct, MainPageLocators locators)
         {
-            this.methods = methods ?? throw new ArgumentNullException(nameof(methods));
+            this.elementAct = elementAct ?? throw new ArgumentNullException(nameof(elementAct));
             this.locators = locators ?? throw new ArgumentNullException(nameof(locators));
         }                
     }

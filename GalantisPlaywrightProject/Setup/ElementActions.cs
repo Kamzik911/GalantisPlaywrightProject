@@ -2,21 +2,14 @@
 
 namespace GalantisPlaywrightProject.Setup
 {    
-    public class Methods
+    public class ElementActions
     {
-        private readonly IPage page;
-        private readonly Pages pages;             
+        private readonly IPage page;        
                
-        public Methods (IPage page, Pages pages)
+        public ElementActions(IPage page)
         {
-            this.page = page;
-            this.pages = pages;
-        }
-
-        public async Task GoToMainPage()
-        {
-            await page.GotoAsync(pages.InitialPage);            
-        }
+            this.page = page;            
+        }       
 
         public async Task ClickOnElementIfVisible(string selector)
         {

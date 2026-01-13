@@ -5,23 +5,22 @@ namespace GalantisPlaywrightProject.Buttons
 {
     public class MainPageButtons
     {
-        private Methods methods;
+        private ElementActions elementActions;
         private MainPageLocators locators;
 
-        public MainPageButtons(Methods methods, MainPageLocators locators)
+        public MainPageButtons(ElementActions elementActions)
         {
-            this.methods = methods ?? throw new ArgumentNullException(nameof(methods));
-            this.locators = locators ?? throw new ArgumentNullException(nameof(locators));
+            this.elementActions = elementActions ?? throw new ArgumentNullException(nameof(elementActions));            
         }
 
         public async Task CloseMainPageModal()
         {
-            await methods.ClickOnElementIfVisible(locators.CloseButtonMainPageModal);
+            await elementActions.ClickOnElementIfVisible(locators.CloseButtonMainPageModal);
         }
 
         public async Task ViewAllButtonIsVisible()
         {
-            await methods.CheckVisibleTextElement(locators.ViewAllButton);
+            await elementActions.CheckVisibleTextElement(locators.ViewAllButton);
         }        
     }
 }
