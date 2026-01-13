@@ -2,7 +2,7 @@
 
 namespace GalantisPlaywrightProject.Setup
 {
-    public class PagesNavigation
+    public class PagesNavigation : IPagesNavigation
     {
         private readonly IPage page;
         private readonly Pages pages;

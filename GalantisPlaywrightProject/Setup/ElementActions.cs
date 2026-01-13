@@ -2,7 +2,7 @@
 
 namespace GalantisPlaywrightProject.Setup
 {    
-    public class ElementActions
+    public class ElementActions : IElementActions
     {
         private readonly IPage page;        
                

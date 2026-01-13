@@ -1,5 +1,4 @@
 ﻿using GalantisPlaywrightProject.Buttons;
-using GalantisPlaywrightProject.Locators;
 using GalantisPlaywrightProject.Setup;
 
 namespace GalantisPlaywrightProject.MainPageTests
@@ -8,19 +7,19 @@ namespace GalantisPlaywrightProject.MainPageTests
     public class MainPageTests : PageTest
     {
         private Pages pages;
-        private PagesNavigation pageNavi;        
-        private DirectPageLinks pageLinks;
-        private ElementActions elementAct;        
-        private MainPageButtons mpButtons;        
+        private IPagesNavigation pageNavi;        
+        private IDirectPages pageLinks;
+        private IElementActions elementAct;        
+        private IMainPageButtons mpButtons;        
 
         [SetUp]
         public void Setup()
         {
-            pages = new Pages();            
+            pages = new Pages();
             pageNavi = new PagesNavigation(Page);
             elementAct = new ElementActions(Page);
             mpButtons = new MainPageButtons(elementAct);
-            pageLinks = new DirectPageLinks(pageNavi, mpButtons);            
+            pageLinks = new DirectPages(pageNavi, mpButtons);            
         }
 
         [Test]

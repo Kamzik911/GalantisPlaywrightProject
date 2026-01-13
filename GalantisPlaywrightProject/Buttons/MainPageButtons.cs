@@ -3,12 +3,12 @@ using GalantisPlaywrightProject.Setup;
 
 namespace GalantisPlaywrightProject.Buttons
 {
-    public class MainPageButtons
+    public class MainPageButtons : IMainPageButtons
     {
-        private ElementActions elementActions;
+        private IElementActions elementActions;
         private MainPageLocators mpLocators;
 
-        public MainPageButtons(ElementActions elementActions)
+        public MainPageButtons(IElementActions elementActions)
         {
             this.elementActions = elementActions ?? throw new ArgumentNullException(nameof(elementActions));
             mpLocators = new MainPageLocators();
