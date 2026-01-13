@@ -10,16 +10,17 @@ namespace GalantisPlaywrightProject.MainPageTests
         private Pages pages;
         private PagesNavigation pageNavi;        
         private DirectPageLinks pageLinks;
-        private ElementActions alementAct;        
+        private ElementActions elementAct;        
         private MainPageButtons mpButtons;        
 
         [SetUp]
         public void Setup()
         {
             pages = new Pages();            
-            pageNavi = new PagesNavigation(Page);            
-            pageLinks = new DirectPageLinks(pageNavi, mpButtons);
-            mpButtons = new MainPageButtons(alementAct);
+            pageNavi = new PagesNavigation(Page);
+            elementAct = new ElementActions(Page);
+            mpButtons = new MainPageButtons(elementAct);
+            pageLinks = new DirectPageLinks(pageNavi, mpButtons);            
         }
 
         [Test]

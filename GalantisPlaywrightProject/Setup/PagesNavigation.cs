@@ -9,7 +9,8 @@ namespace GalantisPlaywrightProject.Setup
 
         public PagesNavigation(IPage page) 
         {
-            this.page = page;            
+            this.page = page;
+            pages = new Pages();
         }
         public async Task GoToMainPage()
         {
