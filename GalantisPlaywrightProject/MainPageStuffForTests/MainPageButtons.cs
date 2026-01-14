@@ -15,17 +15,17 @@ namespace GalantisPlaywrightProject.MainPageStuff
 
         public async Task CloseMainPageModal()
         {
-            await elementActions.ClickOnElementIfVisible(mpLocators.CloseButtonMainPageModal);
+            await elementActions.ClickOnElement(mpLocators.CloseButtonMainPageModal);
         }
 
         public async Task ViewAllButtonIsVisible()
         {
-            await elementActions.CheckVisibleElementText(mpLocators.ViewAllButton);
+            await elementActions.CheckElementTextVisibility(mpLocators.ViewAllButton);
         }
 
         public async Task ClickOnSearchButton() 
         {
-            await elementActions.ClickOnElementIfVisible(mpLocators.SearchButton);
+            await elementActions.ClickOnElement(mpLocators.SearchButton);
         }
     }
 }

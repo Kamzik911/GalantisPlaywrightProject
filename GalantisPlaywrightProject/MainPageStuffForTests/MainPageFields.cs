@@ -16,7 +16,7 @@ namespace GalantisPlaywrightProject.MainPageStuffForTests
 
         public async Task CheckSearchFieldVisibility()
         {
-            await elementActions.CheckVisibleElementText(mpLocators.MainPageSearchField);
+            await elementActions.CheckElementVisibility(mpLocators.MainPageSearchField);
         }
     }
 }

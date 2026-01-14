@@ -12,31 +12,32 @@ namespace GalantisPlaywrightProject.Setup
             this.page = page;            
         }
 
-        public async Task ClickOnElementIfVisible(string selector)
+        public async Task ClickOnElement(string selector)
         {
-            var field = page.Locator(selector);
-            await field.WaitForAsync(new() { State = WaitForSelectorState.Visible });
+            var field = page.Locator(selector);            
             await field.ClickAsync();
+        }
+
+        public async Task CheckElementVisibility(string selector)
+        {
+            await Expect(page.Locator(selector)).ToBeVisibleAsync();
+        }
+
+        public async Task CheckElementTextVisibility(string selector)
+        {
+            await Expect(page.GetByRole(AriaRole.Link, new() { Name = selector})).ToBeVisibleAsync();
         }
 
         public async Task InputTextToField(string selector, string text)
         {            
-            var field = page.Locator(selector);
-            await field.WaitForAsync(new() { State = WaitForSelectorState.Visible });
+            var field = page.Locator(selector);            
             await field.FillAsync(text);            
         }
 
         public async Task CheckInputedTextToField(string selector, string text)
         {
-            var field = page.Locator(selector);
-            await field.WaitForAsync(new() { State = WaitForSelectorState.Visible });
+            var field = page.Locator(selector);            
             await Expect(field).ToHaveValueAsync(text);
-        }
-
-        public async Task CheckVisibleElementText(string selector)
-        {
-            var field = page.GetByText(selector);
-            await field.WaitForAsync(new() { State = WaitForSelectorState.Visible });            
-        }        
+        }                        
     }
 }

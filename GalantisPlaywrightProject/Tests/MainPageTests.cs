@@ -1,6 +1,7 @@
 ﻿using GalantisPlaywrightProject.MainPageStuff;
 using GalantisPlaywrightProject.MainPageStuffForTests;
 using GalantisPlaywrightProject.Setup;
+using Microsoft.Playwright;
 
 namespace GalantisPlaywrightProject.MainPageTests
 {
@@ -8,15 +9,18 @@ namespace GalantisPlaywrightProject.MainPageTests
     public class MainPageTests : PageTest
     {
         private Pages pages;
+        private BrowserSession browserSession;        
+        private IBrowserContext browserContext;
         private IPagesNavigation pageNavi;        
         private IDirectPages pageLinks;
         private IElementActions elementAct;        
         private IMainPageButtons mpButtons;
         private IMainPageFields mpFields;
 
+
         [SetUp]
-        public void Setup()
-        {
+        public async Task Setup()
+        {            
             pages = new Pages();
             pageNavi = new PagesNavigation(Page);
             elementAct = new ElementActions(Page);
@@ -58,6 +62,20 @@ namespace GalantisPlaywrightProject.MainPageTests
             await pageLinks.GoToMainPageWithCloseMainModal();
             await mpButtons.ClickOnSearchButton();
             await mpFields.CheckSearchFieldVisibility();
-        }        
+        }
+
+        [TearDown]
+        public async Task TearDown()
+        {
+            if (browserContext != null)
+            {
+                await browserContext.CloseAsync();
+            }
+
+            if (browserSession != null)
+            {
+                await browserSession.DisposeAsync();
+            }
+        }
     }
 }
