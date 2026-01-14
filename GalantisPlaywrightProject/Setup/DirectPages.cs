@@ -1,7 +1,4 @@
-﻿using GalantisPlaywrightProject.Buttons;
-using GalantisPlaywrightProject.Locators;
-
-namespace GalantisPlaywrightProject.Setup
+﻿namespace GalantisPlaywrightProject.Setup
 {
     public class DirectPages : IDirectPages
     {
@@ -14,7 +11,7 @@ namespace GalantisPlaywrightProject.Setup
             this.mpButtons = mpButtons ?? throw new ArgumentNullException(nameof(mpButtons));            
         }            
 
-        public async Task VisitMainPage()
+        public async Task GoToMainPageWithCloseMainModal()
         {
             await pageNavi.GoToMainPage();
             await mpButtons.CloseMainPageModal();

@@ -1,7 +1,6 @@
-﻿using GalantisPlaywrightProject.Locators;
-using GalantisPlaywrightProject.Setup;
+﻿using GalantisPlaywrightProject.Setup;
 
-namespace GalantisPlaywrightProject.Buttons
+namespace GalantisPlaywrightProject.MainPageStuff
 {
     public class MainPageButtons : IMainPageButtons
     {
@@ -21,7 +20,12 @@ namespace GalantisPlaywrightProject.Buttons
 
         public async Task ViewAllButtonIsVisible()
         {
-            await elementActions.CheckVisibleTextElement(mpLocators.ViewAllButton);
-        }        
+            await elementActions.CheckVisibleElementText(mpLocators.ViewAllButton);
+        }
+
+        public async Task ClickOnSearchButton() 
+        {
+            await elementActions.ClickOnElementIfVisible(mpLocators.SearchButton);
+        }
     }
 }

@@ -3,8 +3,12 @@
     public interface IElementActions
     {
         Task ClickOnElementIfVisible(string selector);
+
         Task InputTextToField(string selector, string text);
-        Task CheckVisibleTextElement(string selector);
+
+        Task CheckInputedTextToField(string selector, string text);
+
+        Task CheckVisibleElementText(string selector);        
     }
 
     public interface IPagesNavigation
@@ -15,11 +19,19 @@
     public interface IMainPageButtons 
     {
         Task CloseMainPageModal();
+        
         Task ViewAllButtonIsVisible();
+        
+        Task ClickOnSearchButton();
     }
 
     public interface IDirectPages
     {
-        Task VisitMainPage();
+        Task GoToMainPageWithCloseMainModal();
+    }
+
+    public interface IMainPageFields
+    {
+        Task CheckSearchFieldVisibility();
     }
 }

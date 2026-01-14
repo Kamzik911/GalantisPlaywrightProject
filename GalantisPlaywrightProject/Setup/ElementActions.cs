@@ -1,4 +1,5 @@
 ﻿using Microsoft.Playwright;
+using static Microsoft.Playwright.Assertions;
 
 namespace GalantisPlaywrightProject.Setup
 {    
@@ -9,7 +10,7 @@ namespace GalantisPlaywrightProject.Setup
         public ElementActions(IPage page)
         {
             this.page = page;            
-        }       
+        }
 
         public async Task ClickOnElementIfVisible(string selector)
         {
@@ -25,10 +26,17 @@ namespace GalantisPlaywrightProject.Setup
             await field.FillAsync(text);            
         }
 
-        public async Task CheckVisibleTextElement(string selector)
+        public async Task CheckInputedTextToField(string selector, string text)
+        {
+            var field = page.Locator(selector);
+            await field.WaitForAsync(new() { State = WaitForSelectorState.Visible });
+            await Expect(field).ToHaveValueAsync(text);
+        }
+
+        public async Task CheckVisibleElementText(string selector)
         {
             var field = page.GetByText(selector);
             await field.WaitForAsync(new() { State = WaitForSelectorState.Visible });            
-        }
+        }        
     }
 }

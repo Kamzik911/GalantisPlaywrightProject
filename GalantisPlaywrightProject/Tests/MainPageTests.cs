@@ -1,4 +1,5 @@
-﻿using GalantisPlaywrightProject.Buttons;
+﻿using GalantisPlaywrightProject.MainPageStuff;
+using GalantisPlaywrightProject.MainPageStuffForTests;
 using GalantisPlaywrightProject.Setup;
 
 namespace GalantisPlaywrightProject.MainPageTests
@@ -10,7 +11,8 @@ namespace GalantisPlaywrightProject.MainPageTests
         private IPagesNavigation pageNavi;        
         private IDirectPages pageLinks;
         private IElementActions elementAct;        
-        private IMainPageButtons mpButtons;        
+        private IMainPageButtons mpButtons;
+        private IMainPageFields mpFields;
 
         [SetUp]
         public void Setup()
@@ -19,7 +21,8 @@ namespace GalantisPlaywrightProject.MainPageTests
             pageNavi = new PagesNavigation(Page);
             elementAct = new ElementActions(Page);
             mpButtons = new MainPageButtons(elementAct);
-            pageLinks = new DirectPages(pageNavi, mpButtons);            
+            pageLinks = new DirectPages(pageNavi, mpButtons);
+            mpFields = new MainPageFields(elementAct);
         }
 
         [Test]
@@ -36,10 +39,25 @@ namespace GalantisPlaywrightProject.MainPageTests
         }
 
         [Test]
-        public async Task ViewButtonIsVisible()
+        public async Task ViewButtonIsVisible_ShouldPass()
         {
-            await pageLinks.VisitMainPage();
+            await pageLinks.GoToMainPageWithCloseMainModal();
             await mpButtons.ViewAllButtonIsVisible();
         }
+
+        [Test]
+        public async Task ClickOnSearchButton_ShouldPass()
+        {
+            await pageLinks.GoToMainPageWithCloseMainModal();
+            await mpButtons.ClickOnSearchButton();
+        }
+
+        [Test]
+        public async Task SearchFieldIsVisible_ShouldPass()
+        {
+            await pageLinks.GoToMainPageWithCloseMainModal();
+            await mpButtons.ClickOnSearchButton();
+            await mpFields.CheckSearchFieldVisibility();
+        }        
     }
 }
